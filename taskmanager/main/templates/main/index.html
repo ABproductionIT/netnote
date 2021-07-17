@@ -5,15 +5,17 @@ New Note
 {% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
   <h1>Create New Note</h1>
   <form method="post">
       {% csrf_token %}
       {{ form.title }}<br>
       {{ form.note }}<br>
-       {% if user.is_authenticated %}
            <button Type="submit" class="btn btn-success">+</button>
          {% else %}
-           <a class="btn btn-outline-primary" href="accounts/login/">Sign up</a>
+          <h3>Please register or
+           <a class="btn btn-outline-primary" href="accounts/login/">Sign in</a>
+           for create Notes!</h3>
          {% endif %}
       <span>{{ error }}</span>
   </form>
